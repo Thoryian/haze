@@ -12,7 +12,7 @@
         body { 
             background: #050505; 
             overflow-x: hidden;
-            font-family: 'Space+Grotesk', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
         }
         @property --angle {
             syntax: '<angle>';
@@ -58,7 +58,7 @@
             opacity: 0;
             transition: all 0.3s ease;
         }
-        .iframe-container {
+        .video {
             opacity: 0;
             transform: translateY(20px);
         }
@@ -83,7 +83,7 @@
             </div>
         </section>
         <section class="space-y-6">
-            <h2 class="text-xl font-semibold text-gray-400">projects</h2>
+            <h2 class="text-xl font-semibold text-gray-400 text-center">projects</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <a href="#" class="project-card rounded-xl p-6 space-y-3">
                     <div class="flex items-center gap-2">
@@ -115,7 +115,8 @@
                 </a>
             </div>
         </section>
-        <section class="iframe-container">
+        <section class="video space-y-6">
+            <h2 class="text-xl font-semibold text-gray-400 text-center">cool song</h2>
             <div class="rounded-xl overflow-hidden bg-zinc-900">
                 <iframe 
                     src="https://www.youtube.com/embed/dTJjFE4-Jdk" 
@@ -161,14 +162,14 @@
             ease: 'power3.out'
         });
 
-        gsap.fromTo('.iframe-container', 
+        gsap.fromTo('.video', 
             { opacity: 0, y: 20 },
             {
                 opacity: 1,
                 y: 0,
                 duration: 0.8,
                 scrollTrigger: {
-                    trigger: '.iframe-container',
+                    trigger: '.video',
                     start: 'top bottom-=150',
                     toggleActions: 'play none none none'
                 },
