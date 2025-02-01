@@ -73,6 +73,7 @@
             </div>
             <div class="space-y-4">
                 <h1 class="text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-teal-400">haze</h1>
+                <p class="text-gray-400">i use yt premium btw</p>
                 <div class="flex justify-center gap-2">
                     <a href="https://steamcommunity.com/id/hazelnutdev" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fab fa-steam mr-1"></i>Steam</a>
                     <a href="https://discord.com/users/1266530258522345574" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fab fa-discord mr-1"></i>Discord</a>
@@ -83,24 +84,42 @@
             </div>
         </section>
         <section class="space-y-6">
-            <h2 class="text-xl font-semibold text-gray-400">Projects</h2>
+            <h2 class="text-xl font-semibold text-gray-400">cool song</h2>
+            <div class="rounded-xl overflow-hidden transform translate-y-20 opacity-0">
+                <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/dTJjFE4-Jdk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+        <section class="space-y-6">
+            <h2 class="text-xl font-semibold text-gray-400">projects</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="project-card rounded-xl p-6 space-y-3">
-                    <h3 class="text-lg font-medium">Project 1</h3>
-                    <p class="text-gray-400 text-sm">Placeholder</p>
-                </div>
-                <div class="project-card rounded-xl p-6 space-y-3">
-                    <h3 class="text-lg font-medium">Project 2</h3>
-                    <p class="text-gray-400 text-sm">Placeholder</p>
-                </div>
-                <div class="project-card rounded-xl p-6 space-y-3">
-                    <h3 class="text-lg font-medium">Project 3</h3>
-                    <p class="text-gray-400 text-sm">Placeholder</p>
-                </div>
-                <div class="project-card rounded-xl p-6 space-y-3">
-                    <h3 class="text-lg font-medium">Project 4</h3>
-                    <p class="text-gray-400 text-sm">Placeholder</p>
-                </div>
+                <a href="#" class="project-card rounded-xl p-6 space-y-3 hover:bg-zinc-800 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-placeholder text-gray-400"></i>
+                        <h3 class="text-lg font-medium">project 1</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">placeholder</p>
+                </a>
+                <a href="#" class="project-card rounded-xl p-6 space-y-3 hover:bg-zinc-800 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-placeholder text-gray-400"></i>
+                        <h3 class="text-lg font-medium">project 2</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">placeholder</p>
+                </a>
+                <a href="#" class="project-card rounded-xl p-6 space-y-3 hover:bg-zinc-800 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-placeholder text-gray-400"></i>
+                        <h3 class="text-lg font-medium">project 3</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">placeholder</p>
+                </a>
+                <a href="#" class="project-card rounded-xl p-6 space-y-3 hover:bg-zinc-800 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-placeholder text-gray-400"></i>
+                        <h3 class="text-lg font-medium">project 4</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">placeholder</p>
+                </a>
             </div>
         </section>
     </main>
@@ -134,6 +153,17 @@
             opacity: 1,
             duration: 0.6,
             stagger: 0.1,
+            ease: 'power3.out'
+        });
+        gsap.to('iframe', {
+            scrollTrigger: {
+                trigger: 'iframe',
+                start: 'top bottom-=100',
+                toggleActions: 'play none none none'
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
             ease: 'power3.out'
         });
     </script>
