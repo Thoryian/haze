@@ -7,9 +7,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cantarell:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { background: #111111; overflow-x: hidden; }
-        .social-link { opacity: 0; }
+        body { 
+            background: #0a0a0a; 
+            overflow-x: hidden;
+            font-family: 'Cantarell', sans-serif;
+        }
+        .social-link { 
+            opacity: 0;
+            backdrop-filter: blur(10px);
+        }
         @property --angle {
             syntax: '<angle>';
             initial-value: 0deg;
@@ -17,9 +25,9 @@
         }
         .profile-border {
             --angle: 0deg;
-            --border-size: 3px;
-            width: 128px;
-            height: 128px;
+            --border-size: 6px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             position: relative;
             z-index: 0;
@@ -36,11 +44,21 @@
             width: calc(100% + 2 * var(--border-size));
             height: calc(100% + 2 * var(--border-size));
             border-radius: 50%;
-            background: conic-gradient(from var(--angle), #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff0080, #ff0000);
+            background: conic-gradient(from var(--angle), 
+                rgba(255, 0, 0, 0.8), 
+                rgba(255, 128, 0, 0.8), 
+                rgba(255, 255, 0, 0.8), 
+                rgba(0, 255, 0, 0.8), 
+                rgba(0, 255, 255, 0.8), 
+                rgba(0, 0, 255, 0.8), 
+                rgba(128, 0, 255, 0.8), 
+                rgba(255, 0, 128, 0.8), 
+                rgba(255, 0, 0, 0.8));
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask-composite: exclude;
             animation: rotate-gradient 3s linear infinite;
             z-index: -1;
+            filter: blur(2px);
         }
         @keyframes rotate-gradient {
             to { --angle: 360deg }
@@ -58,41 +76,54 @@
         .footer-text {
             opacity: 0;
         }
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        .social-item {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(24, 24, 27, 0.7);
+            border-radius: 24px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .icon-large {
+            font-size: 1.8rem;
+        }
     </style>
 </head>
 <body class="text-gray-200 min-h-screen flex flex-col items-center justify-center p-4">
-    <main class="max-w-xl w-full space-y-8 main-content">
-        <section class="text-center space-y-4">
+    <main class="max-w-xl w-full space-y-12 main-content">
+        <section class="text-center space-y-6">
             <div class="profile-border">
                 <img src="b1b0e6dd8a588329cf2cf38bd814ec42.webp" alt="haze" class="profile-image">
             </div>
-            <h1 class="text-3xl font-bold text-orange-500">haze</h1>
+            <h1 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-pink-500">haze</h1>
         </section>
-        <section class="space-y-4">
-            <a href="https://steamcommunity.com/id/hazelnutdev" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
-                <i class="fab fa-steam text-xl text-orange-500 mr-3"></i>
-                <span>steam/hazelnutdev</span>
+        <section class="social-grid">
+            <a href="https://steamcommunity.com/id/hazelnutdev" target="_blank" class="social-link social-item group">
+                <i class="fab fa-steam icon-large text-orange-500 group-hover:text-orange-400 transition-colors"></i>
             </a>
-            <a href="https://discord.com/users/1266530258522345574" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
-                <i class="fab fa-discord text-xl text-orange-500 mr-3"></i>
-                <span>discord/8669c2e5</span>
+            <a href="https://discord.com/users/1266530258522345574" target="_blank" class="social-link social-item group">
+                <i class="fab fa-discord icon-large text-orange-500 group-hover:text-orange-400 transition-colors"></i>
             </a>
-            <a href="https://tiktok.com/@hazelnutdev" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
-                <i class="fab fa-tiktok text-xl text-orange-500 mr-3"></i>
-                <span>tiktok/@hazelnutdev</span>
+            <a href="https://tiktok.com/@hazelnutdev" target="_blank" class="social-link social-item group">
+                <i class="fab fa-tiktok icon-large text-orange-500 group-hover:text-orange-400 transition-colors"></i>
             </a>
-            <a href="https://www.youtube.com/@hazelnutdev" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
-                <i class="fab fa-youtube text-xl text-orange-500 mr-3"></i>
-                <span>youtube/@hazelnutdev</span>
+            <a href="https://www.youtube.com/@hazelnutdev" target="_blank" class="social-link social-item group">
+                <i class="fab fa-youtube icon-large text-orange-500 group-hover:text-orange-400 transition-colors"></i>
             </a>
-            <a href="https://www.roblox.com/users/4575669522/profile" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
-                <i class="fas fa-gamepad text-xl text-orange-500 mr-3"></i>
-                <span>roblox/oncemiri</span>
+            <a href="https://www.roblox.com/users/4575669522/profile" target="_blank" class="social-link social-item group">
+                <i class="fas fa-gamepad icon-large text-orange-500 group-hover:text-orange-400 transition-colors"></i>
             </a>
         </section>
     </main>
-    <footer class="text-zinc-500 mt-12 text-sm footer-text">
-        site planned to move to hazel-nut.xyz
+    <footer class="text-zinc-600 mt-12 text-sm footer-text">
+        hazel-nut.xyz
     </footer>
     <script>
         const tl = gsap.timeline();
@@ -117,14 +148,14 @@
         document.querySelectorAll('.social-link').forEach(link => {
             link.addEventListener('mouseenter', () => {
                 gsap.to(link, {
-                    backgroundColor: '#27272a',
+                    scale: 1.05,
                     duration: 0.3,
                     ease: 'power2.out'
                 });
             });
             link.addEventListener('mouseleave', () => {
                 gsap.to(link, {
-                    backgroundColor: '#18181b',
+                    scale: 1,
                     duration: 0.3,
                     ease: 'power2.out'
                 });
