@@ -7,16 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cantarell:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body { 
-            background: #0a0a0a; 
+            background: #050505; 
             overflow-x: hidden;
-            font-family: 'Cantarell', sans-serif;
-        }
-        .social-link { 
-            opacity: 0;
-            backdrop-filter: blur(10px);
+            font-family: 'Space Grotesk', sans-serif;
         }
         @property --angle {
             syntax: '<angle>';
@@ -25,9 +21,9 @@
         }
         .profile-border {
             --angle: 0deg;
-            --border-size: 6px;
-            width: 160px;
-            height: 160px;
+            --border-size: 4px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             position: relative;
             z-index: 0;
@@ -44,21 +40,12 @@
             width: calc(100% + 2 * var(--border-size));
             height: calc(100% + 2 * var(--border-size));
             border-radius: 50%;
-            background: conic-gradient(from var(--angle), 
-                rgba(255, 0, 0, 0.8), 
-                rgba(255, 128, 0, 0.8), 
-                rgba(255, 255, 0, 0.8), 
-                rgba(0, 255, 0, 0.8), 
-                rgba(0, 255, 255, 0.8), 
-                rgba(0, 0, 255, 0.8), 
-                rgba(128, 0, 255, 0.8), 
-                rgba(255, 0, 128, 0.8), 
-                rgba(255, 0, 0, 0.8));
+            background: conic-gradient(from var(--angle), #FF4D4D, #FF6B6B, #4ECDC4, #45B7D1, #FF4D4D);
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask-composite: exclude;
-            animation: rotate-gradient 3s linear infinite;
+            animation: rotate-gradient 4s linear infinite;
             z-index: -1;
-            filter: blur(2px);
+            filter: blur(4px);
         }
         @keyframes rotate-gradient {
             to { --angle: 360deg }
@@ -69,97 +56,85 @@
             height: 100%;
             object-fit: cover;
         }
-        .main-content {
-            opacity: 0;
-            filter: blur(10px);
-        }
-        .footer-text {
-            opacity: 0;
-        }
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-        .social-item {
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(24, 24, 27, 0.7);
-            border-radius: 24px;
-            backdrop-filter: blur(8px);
+        .project-card {
+            background: rgba(15, 15, 15, 0.6);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .icon-large {
-            font-size: 1.8rem;
+            transform: translateY(20px);
+            opacity: 0;
         }
     </style>
 </head>
 <body class="text-gray-200 min-h-screen flex flex-col items-center justify-center p-4">
-    <main class="max-w-xl w-full space-y-12 main-content">
+    <main class="max-w-2xl w-full space-y-16">
         <section class="text-center space-y-6">
             <div class="profile-border">
                 <img src="b1b0e6dd8a588329cf2cf38bd814ec42.webp" alt="haze" class="profile-image">
             </div>
-            <h1 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-pink-500">haze</h1>
+            <div class="space-y-4">
+                <h1 class="text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-teal-400">haze</h1>
+                <div class="flex justify-center gap-2">
+                    <a href="https://steamcommunity.com/id/hazelnutdev" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fab fa-steam mr-1"></i>Steam</a>
+                    <a href="https://discord.com/users/1266530258522345574" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fab fa-discord mr-1"></i>Discord</a>
+                    <a href="https://tiktok.com/@hazelnutdev" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fab fa-tiktok mr-1"></i>TikTok</a>
+                    <a href="https://www.youtube.com/@hazelnutdev" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fab fa-youtube mr-1"></i>YouTube</a>
+                    <a href="https://www.roblox.com/users/4575669522/profile" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fas fa-gamepad mr-1"></i>Roblox</a>
+                </div>
+            </div>
         </section>
-        <section class="social-grid">
-            <a href="https://steamcommunity.com/id/hazelnutdev" target="_blank" class="social-link social-item group">
-                <i class="fab fa-steam icon-large text-orange-500 group-hover:text-orange-400 transition-colors"></i>
-            </a>
-            <a href="https://discord.com/users/1266530258522345574" target="_blank" class="social-link social-item group">
-                <i class="fab fa-discord icon-large text-orange-500 group-hover:text-orange-400 transition-colors"></i>
-            </a>
-            <a href="https://tiktok.com/@hazelnutdev" target="_blank" class="social-link social-item group">
-                <i class="fab fa-tiktok icon-large text-orange-500 group-hover:text-orange-400 transition-colors"></i>
-            </a>
-            <a href="https://www.youtube.com/@hazelnutdev" target="_blank" class="social-link social-item group">
-                <i class="fab fa-youtube icon-large text-orange-500 group-hover:text-orange-400 transition-colors"></i>
-            </a>
-            <a href="https://www.roblox.com/users/4575669522/profile" target="_blank" class="social-link social-item group">
-                <i class="fas fa-gamepad icon-large text-orange-500 group-hover:text-orange-400 transition-colors"></i>
-            </a>
+        <section class="space-y-6">
+            <h2 class="text-xl font-semibold text-gray-400">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="project-card rounded-xl p-6 space-y-3">
+                    <h3 class="text-lg font-medium">Project 1</h3>
+                    <p class="text-gray-400 text-sm">Placeholder</p>
+                </div>
+                <div class="project-card rounded-xl p-6 space-y-3">
+                    <h3 class="text-lg font-medium">Project 2</h3>
+                    <p class="text-gray-400 text-sm">Placeholder</p>
+                </div>
+                <div class="project-card rounded-xl p-6 space-y-3">
+                    <h3 class="text-lg font-medium">Project 3</h3>
+                    <p class="text-gray-400 text-sm">Placeholder</p>
+                </div>
+                <div class="project-card rounded-xl p-6 space-y-3">
+                    <h3 class="text-lg font-medium">Project 4</h3>
+                    <p class="text-gray-400 text-sm">Placeholder</p>
+                </div>
+            </div>
         </section>
     </main>
-    <footer class="text-zinc-600 mt-12 text-sm footer-text">
-        hazel-nut.xyz
-    </footer>
+    <footer class="text-zinc-800 mt-12 text-sm">hazel-nut.xyz</footer>
     <script>
         const tl = gsap.timeline();
-        tl.to('.main-content', {
-            opacity: 1,
-            filter: 'blur(0px)',
-            duration: 1.2,
-            ease: 'power4.out'
-        });
-        gsap.utils.toArray('.social-link').forEach((link, i) => {
-            tl.to(link, {
-                opacity: 1,
-                duration: 0.4,
-                ease: 'power2.out'
-            }, `-=${i ? 0.3 : 0}`);
-        });
-        tl.to('.footer-text', {
+        tl.from('.profile-border', {
+            scale: 0.8,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+        }).from('h1', {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: 'power3.out'
+        }, '-=0.4').from('.flex.justify-center a', {
+            scale: 0.8,
+            opacity: 0,
+            duration: 0.4,
+            stagger: 0.1,
+            ease: 'power3.out'
+        }, '-=0.2');
+        gsap.to('.project-card', {
+            scrollTrigger: {
+                trigger: '.project-card',
+                start: 'top bottom-=100',
+                toggleActions: 'play none none none'
+            },
+            y: 0,
             opacity: 1,
             duration: 0.6,
-            ease: 'power2.out'
-        }, '-=0.4');
-        document.querySelectorAll('.social-link').forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                gsap.to(link, {
-                    scale: 1.05,
-                    duration: 0.3,
-                    ease: 'power2.out'
-                });
-            });
-            link.addEventListener('mouseleave', () => {
-                gsap.to(link, {
-                    scale: 1,
-                    duration: 0.3,
-                    ease: 'power2.out'
-                });
-            });
+            stagger: 0.1,
+            ease: 'power3.out'
         });
     </script>
 </body>
