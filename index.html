@@ -18,28 +18,37 @@
         .profile-border {
             --angle: 0deg;
             --border-size: 3px;
+            width: 128px;
+            height: 128px;
             border-radius: 50%;
             position: relative;
             z-index: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
         }
         .profile-border::before {
             content: '';
             position: absolute;
-            inset: calc(-1 * var(--border-size));
+            top: calc(-1 * var(--border-size));
+            left: calc(-1 * var(--border-size));
+            width: calc(100% + 2 * var(--border-size));
+            height: calc(100% + 2 * var(--border-size));
             border-radius: 50%;
-            padding: var(--border-size);
             background: conic-gradient(from var(--angle), #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff0080, #ff0000);
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask-composite: exclude;
             animation: rotate-gradient 3s linear infinite;
+            z-index: -1;
         }
         @keyframes rotate-gradient {
             to { --angle: 360deg }
         }
         .profile-image {
             border-radius: 50%;
-            width: 128px;
-            height: 128px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
         .main-content {
@@ -54,7 +63,7 @@
 <body class="text-gray-200 min-h-screen flex flex-col items-center justify-center p-4">
     <main class="max-w-xl w-full space-y-8 main-content">
         <section class="text-center space-y-4">
-            <div class="profile-border mx-auto">
+            <div class="profile-border">
                 <img src="b1b0e6dd8a588329cf2cf38bd814ec42.webp" alt="haze" class="profile-image">
             </div>
             <h1 class="text-3xl font-bold text-orange-500">haze</h1>
