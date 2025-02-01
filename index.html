@@ -5,139 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>haze</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { 
-            background: #111111;
-            overflow-x: hidden;
+        body { background: #111111; overflow-x: hidden; }
+        .social-link { opacity: 0; }
+        @property --angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
         }
-        
-        @keyframes rotateHue {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        @keyframes fadeSlideIn {
-            0% { 
-                opacity: 0;
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-            }
-            100% { 
-                opacity: 1;
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-        }
-        
-        @keyframes borderRotate {
-            0% { border-image: conic-gradient(
-                from 0deg,
-                #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80,
-                #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080,
-                #ff0000) 1; }
-            100% { border-image: conic-gradient(
-                from 360deg,
-                #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80,
-                #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080,
-                #ff0000) 1; }
-        }
-
-        .profile-img {
-            border: 4px solid;
+        .profile-border {
+            --angle: 0deg;
+            --border-size: 3px;
             border-radius: 50%;
-            animation: borderRotate 4s linear infinite;
-        }
-
-        .social-link {
             position: relative;
-            overflow: hidden;
+            z-index: 0;
         }
-
-        .social-link::after {
+        .profile-border::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.1),
-                transparent
-            );
-            animation: shimmer 3s infinite;
+            inset: calc(-1 * var(--border-size));
+            border-radius: 50%;
+            padding: var(--border-size);
+            background: conic-gradient(from var(--angle), #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff0080, #ff0000);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            animation: rotate-gradient 3s linear infinite;
         }
-
-        @keyframes shimmer {
-            100% { left: 100%; }
+        @keyframes rotate-gradient {
+            to { --angle: 360deg }
         }
-
-        .fade-slide {
-            animation: fadeSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-fill-mode: both;
+        .profile-image {
+            border-radius: 50%;
+            width: 128px;
+            height: 128px;
+            object-fit: cover;
         }
-
-        .fade-slide:nth-child(1) { animation-delay: 0.1s; }
-        .fade-slide:nth-child(2) { animation-delay: 0.2s; }
-        .fade-slide:nth-child(3) { animation-delay: 0.3s; }
-        .fade-slide:nth-child(4) { animation-delay: 0.4s; }
-        .fade-slide:nth-child(5) { animation-delay: 0.5s; }
-
-        .social-link:hover::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(45deg, #ff6b6b, #feca57, #ff9f43);
-            opacity: 0.1;
-            transition: opacity 0.3s ease;
+        .main-content {
+            opacity: 0;
+            filter: blur(10px);
         }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .profile-container {
-            animation: float 6s ease-in-out infinite;
+        .footer-text {
+            opacity: 0;
         }
     </style>
 </head>
 <body class="text-gray-200 min-h-screen flex flex-col items-center justify-center p-4">
-    <main class="max-w-xl w-full space-y-8">
-        <section class="text-center space-y-4 profile-container">
-            <img src="b1b0e6dd8a588329cf2cf38bd814ec42.webp" alt="haze" class="w-32 h-32 profile-img mx-auto shadow-lg">
+    <main class="max-w-xl w-full space-y-8 main-content">
+        <section class="text-center space-y-4">
+            <div class="profile-border mx-auto">
+                <img src="b1b0e6dd8a588329cf2cf38bd814ec42.webp" alt="haze" class="profile-image">
+            </div>
             <h1 class="text-3xl font-bold text-orange-500">haze</h1>
         </section>
         <section class="space-y-4">
-            <a href="https://steamcommunity.com/id/hazelnutdev" target="_blank" class="fade-slide social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
+            <a href="https://steamcommunity.com/id/hazelnutdev" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
                 <i class="fab fa-steam text-xl text-orange-500 mr-3"></i>
                 <span>steam/hazelnutdev</span>
             </a>
-            <a href="https://discord.com/users/1266530258522345574" target="_blank" class="fade-slide social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
+            <a href="https://discord.com/users/1266530258522345574" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
                 <i class="fab fa-discord text-xl text-orange-500 mr-3"></i>
                 <span>discord/8669c2e5</span>
             </a>
-            <a href="https://tiktok.com/@hazelnutdev" target="_blank" class="fade-slide social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
+            <a href="https://tiktok.com/@hazelnutdev" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
                 <i class="fab fa-tiktok text-xl text-orange-500 mr-3"></i>
                 <span>tiktok/@hazelnutdev</span>
             </a>
-            <a href="https://www.youtube.com/@hazelnutdev" target="_blank" class="fade-slide social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
+            <a href="https://www.youtube.com/@hazelnutdev" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
                 <i class="fab fa-youtube text-xl text-orange-500 mr-3"></i>
                 <span>youtube/@hazelnutdev</span>
             </a>
-            <a href="https://www.roblox.com/users/4575669522/profile" target="_blank" class="fade-slide social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
+            <a href="https://www.roblox.com/users/4575669522/profile" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
                 <i class="fas fa-gamepad text-xl text-orange-500 mr-3"></i>
                 <span>roblox/oncemiri</span>
             </a>
         </section>
     </main>
-    <footer class="text-zinc-500 mt-12 text-sm fade-slide">
+    <footer class="text-zinc-500 mt-12 text-sm footer-text">
         site planned to move to hazel-nut.xyz
     </footer>
+    <script>
+        const tl = gsap.timeline();
+        tl.to('.main-content', {
+            opacity: 1,
+            filter: 'blur(0px)',
+            duration: 1.2,
+            ease: 'power4.out'
+        });
+        gsap.utils.toArray('.social-link').forEach((link, i) => {
+            tl.to(link, {
+                opacity: 1,
+                duration: 0.4,
+                ease: 'power2.out'
+            }, `-=${i ? 0.3 : 0}`);
+        });
+        tl.to('.footer-text', {
+            opacity: 1,
+            duration: 0.6,
+            ease: 'power2.out'
+        }, '-=0.4');
+        document.querySelectorAll('.social-link').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                gsap.to(link, {
+                    backgroundColor: '#27272a',
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+            link.addEventListener('mouseleave', () => {
+                gsap.to(link, {
+                    backgroundColor: '#18181b',
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
