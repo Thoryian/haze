@@ -12,7 +12,7 @@
         body { 
             background: #050505; 
             overflow-x: hidden;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Space+Grotesk', sans-serif;
         }
         @property --angle {
             syntax: '<angle>';
@@ -50,18 +50,17 @@
         @keyframes rotate-gradient {
             to { --angle: 360deg }
         }
-        .profile-image {
-            border-radius: 50%;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
         .project-card {
             background: rgba(15, 15, 15, 0.6);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             transform: translateY(20px);
             opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .iframe-container {
+            opacity: 0;
+            transform: translateY(20px);
         }
     </style>
 </head>
@@ -75,51 +74,56 @@
                 <h1 class="text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-teal-400">haze</h1>
                 <p class="text-gray-400">i use yt premium btw</p>
                 <div class="flex justify-center gap-2">
-                    <a href="https://steamcommunity.com/id/hazelnutdev" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fab fa-steam mr-1"></i>Steam</a>
-                    <a href="https://discord.com/users/1266530258522345574" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fab fa-discord mr-1"></i>Discord</a>
-                    <a href="https://tiktok.com/@hazelnutdev" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fab fa-tiktok mr-1"></i>TikTok</a>
-                    <a href="https://www.youtube.com/@hazelnutdev" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fab fa-youtube mr-1"></i>YouTube</a>
-                    <a href="https://www.roblox.com/users/4575669522/profile" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fas fa-gamepad mr-1"></i>Roblox</a>
+                    <a href="https://steamcommunity.com/id/hazelnutdev" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fab fa-steam mr-1"></i>steam</a>
+                    <a href="https://discord.com/users/1266530258522345574" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fab fa-discord mr-1"></i>discord</a>
+                    <a href="https://tiktok.com/@hazelnutdev" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fab fa-tiktok mr-1"></i>tiktok</a>
+                    <a href="https://www.youtube.com/@hazelnutdev" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fab fa-youtube mr-1"></i>youtube</a>
+                    <a href="https://www.roblox.com/users/4575669522/profile" class="px-3 py-1 text-xs bg-zinc-900 hover:bg-zinc-800 rounded-full transition-colors"><i class="fas fa-gamepad mr-1"></i>roblox</a>
                 </div>
-            </div>
-        </section>
-        <section class="space-y-6">
-            <h2 class="text-xl font-semibold text-gray-400">cool song</h2>
-            <div class="rounded-xl overflow-hidden transform translate-y-20 opacity-0">
-                <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/dTJjFE4-Jdk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </section>
         <section class="space-y-6">
             <h2 class="text-xl font-semibold text-gray-400">projects</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <a href="#" class="project-card rounded-xl p-6 space-y-3 hover:bg-zinc-800 transition-colors">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-placeholder text-gray-400"></i>
+                <a href="#" class="project-card rounded-xl p-6 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-gamepad text-gray-400"></i>
                         <h3 class="text-lg font-medium">project 1</h3>
                     </div>
                     <p class="text-gray-400 text-sm">placeholder</p>
                 </a>
-                <a href="#" class="project-card rounded-xl p-6 space-y-3 hover:bg-zinc-800 transition-colors">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-placeholder text-gray-400"></i>
+                <a href="#" class="project-card rounded-xl p-6 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-gamepad text-gray-400"></i>
                         <h3 class="text-lg font-medium">project 2</h3>
                     </div>
                     <p class="text-gray-400 text-sm">placeholder</p>
                 </a>
-                <a href="#" class="project-card rounded-xl p-6 space-y-3 hover:bg-zinc-800 transition-colors">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-placeholder text-gray-400"></i>
+                <a href="#" class="project-card rounded-xl p-6 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-gamepad text-gray-400"></i>
                         <h3 class="text-lg font-medium">project 3</h3>
                     </div>
                     <p class="text-gray-400 text-sm">placeholder</p>
                 </a>
-                <a href="#" class="project-card rounded-xl p-6 space-y-3 hover:bg-zinc-800 transition-colors">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-placeholder text-gray-400"></i>
+                <a href="#" class="project-card rounded-xl p-6 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-gamepad text-gray-400"></i>
                         <h3 class="text-lg font-medium">project 4</h3>
                     </div>
                     <p class="text-gray-400 text-sm">placeholder</p>
                 </a>
+            </div>
+        </section>
+        <section class="iframe-container">
+            <div class="rounded-xl overflow-hidden bg-zinc-900">
+                <iframe 
+                    src="https://www.youtube.com/embed/dTJjFE4-Jdk" 
+                    class="w-full aspect-video"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
             </div>
         </section>
     </main>
@@ -143,6 +147,7 @@
             stagger: 0.1,
             ease: 'power3.out'
         }, '-=0.2');
+
         gsap.to('.project-card', {
             scrollTrigger: {
                 trigger: '.project-card',
@@ -155,17 +160,21 @@
             stagger: 0.1,
             ease: 'power3.out'
         });
-        gsap.to('iframe', {
-            scrollTrigger: {
-                trigger: 'iframe',
-                start: 'top bottom-=100',
-                toggleActions: 'play none none none'
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.6,
-            ease: 'power3.out'
-        });
+
+        gsap.fromTo('.iframe-container', 
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: '.iframe-container',
+                    start: 'top bottom-=150',
+                    toggleActions: 'play none none none'
+                },
+                ease: 'power3.out'
+            }
+        );
     </script>
 </body>
 </html>
