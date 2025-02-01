@@ -7,55 +7,136 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { background: #111111; }
-        .social-link:hover { transform: translateY(-2px); }
-        .social-link { transition: transform 0.2s; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        body { 
+            background: #111111;
+            overflow-x: hidden;
         }
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-            opacity: 0;
+        
+        @keyframes rotateHue {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeSlideIn {
+            0% { 
+                opacity: 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+            }
+            100% { 
+                opacity: 1;
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+        }
+        
+        @keyframes borderRotate {
+            0% { border-image: conic-gradient(
+                from 0deg,
+                #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80,
+                #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080,
+                #ff0000) 1; }
+            100% { border-image: conic-gradient(
+                from 360deg,
+                #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80,
+                #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080,
+                #ff0000) 1; }
+        }
+
+        .profile-img {
+            border: 4px solid;
+            border-radius: 50%;
+            animation: borderRotate 4s linear infinite;
+        }
+
+        .social-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            100% { left: 100%; }
+        }
+
+        .fade-slide {
+            animation: fadeSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-fill-mode: both;
+        }
+
+        .fade-slide:nth-child(1) { animation-delay: 0.1s; }
+        .fade-slide:nth-child(2) { animation-delay: 0.2s; }
+        .fade-slide:nth-child(3) { animation-delay: 0.3s; }
+        .fade-slide:nth-child(4) { animation-delay: 0.4s; }
+        .fade-slide:nth-child(5) { animation-delay: 0.5s; }
+
+        .social-link:hover::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #ff9f43);
+            opacity: 0.1;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .profile-container {
+            animation: float 6s ease-in-out infinite;
         }
     </style>
 </head>
 <body class="text-gray-200 min-h-screen flex flex-col items-center justify-center p-4">
-    <main class="max-w-xl w-full space-y-8 fade-in">
-        <section class="text-center space-y-4">
-            <img src="b1b0e6dd8a588329cf2cf38bd814ec42.webp" alt="haze" class="w-32 h-32 rounded-full mx-auto shadow-lg border-2 border-orange-500">
+    <main class="max-w-xl w-full space-y-8">
+        <section class="text-center space-y-4 profile-container">
+            <img src="b1b0e6dd8a588329cf2cf38bd814ec42.webp" alt="haze" class="w-32 h-32 profile-img mx-auto shadow-lg">
             <h1 class="text-3xl font-bold text-orange-500">haze</h1>
         </section>
-
         <section class="space-y-4">
-            <a href="https://steamcommunity.com/id/hazelnutdev" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
+            <a href="https://steamcommunity.com/id/hazelnutdev" target="_blank" class="fade-slide social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
                 <i class="fab fa-steam text-xl text-orange-500 mr-3"></i>
                 <span>steam/hazelnutdev</span>
             </a>
-            
-            <a href="https://discord.com/users/1266530258522345574" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
+            <a href="https://discord.com/users/1266530258522345574" target="_blank" class="fade-slide social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
                 <i class="fab fa-discord text-xl text-orange-500 mr-3"></i>
                 <span>discord/8669c2e5</span>
             </a>
-            
-            <a href="https://tiktok.com/@hazelnutdev" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
+            <a href="https://tiktok.com/@hazelnutdev" target="_blank" class="fade-slide social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
                 <i class="fab fa-tiktok text-xl text-orange-500 mr-3"></i>
                 <span>tiktok/@hazelnutdev</span>
             </a>
-            
-            <a href="https://www.youtube.com/@hazelnutdev" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
+            <a href="https://www.youtube.com/@hazelnutdev" target="_blank" class="fade-slide social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
                 <i class="fab fa-youtube text-xl text-orange-500 mr-3"></i>
                 <span>youtube/@hazelnutdev</span>
             </a>
-            
-            <a href="https://www.roblox.com/users/4575669522/profile" target="_blank" class="social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
+            <a href="https://www.roblox.com/users/4575669522/profile" target="_blank" class="fade-slide social-link block bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800">
                 <i class="fas fa-gamepad text-xl text-orange-500 mr-3"></i>
                 <span>roblox/oncemiri</span>
             </a>
         </section>
     </main>
-
-    <footer class="text-zinc-500 mt-12 text-sm fade-in" style="animation-delay: 0.3s">
+    <footer class="text-zinc-500 mt-12 text-sm fade-slide">
         site planned to move to hazel-nut.xyz
     </footer>
 </body>
