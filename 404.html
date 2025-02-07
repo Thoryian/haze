@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - hazelnut</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            background: #050505; 
+            overflow: hidden;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        @property --angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+        .error-border {
+            --angle: 0deg;
+            --border-size: 4px;
+            padding: 2rem;
+            border-radius: 1rem;
+            position: relative;
+            z-index: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        .error-border::before {
+            content: '';
+            position: absolute;
+            top: calc(-1 * var(--border-size));
+            left: calc(-1 * var(--border-size));
+            width: calc(100% + 2 * var(--border-size));
+            height: calc(100% + 2 * var(--border-size));
+            border-radius: 1rem;
+            background: conic-gradient(from var(--angle), #FF4D4D, #FF6B6B, #4ECDC4, #45B7D1, #FF4D4D);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            animation: rotate-gradient 4s linear infinite;
+            z-index: -1;
+            filter: blur(4px);
+        }
+        @keyframes rotate-gradient {
+            to { --angle: 360deg }
+        }
+        .line {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="error-border bg-zinc-900/60 backdrop-blur-xl">
+        <div class="text-center space-y-6">
+            <h1 class="text-6xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-teal-400">404</h1>
+            <p class="text-gray-400">page not found</p>
+            <a href="/" class="inline-block px-6 py-2 text-sm bg-zinc-800 hover:bg-zinc-700 rounded-full transition-colors">
+                <i class="fas fa-home mr-2"></i>go back home
+            </a>
+        </div>
+    </div>
+    <script>
+        const createLine = () => {
+            const line = document.createElement('div');
+            line.className = 'line';
+            const isHorizontal = Math.random() > 0.5;
+            const length = Math.random() * 150 + 50;
+            const position = Math.random() * 100;
+            
+            if (isHorizontal) {
+                line.style.width = `${length}px`;
+                line.style.height = '1px';
+                line.style.left = `${Math.random() * 100}%`;
+                line.style.top = `${position}%`;
+            } else {
+                line.style.height = `${length}px`;
+                line.style.width = '1px';
+                line.style.top = `${Math.random() * 100}%`;
+                line.style.left = `${position}%`;
+            }
+            
+            document.body.appendChild(line);
+            
+            gsap.from(line, {
+                opacity: 0,
+                scale: 0,
+                duration: 1,
+                ease: 'power3.out',
+                onComplete: () => {
+                    setTimeout(() => {
+                        gsap.to(line, {
+                            opacity: 0,
+                            duration: 0.5,
+                            onComplete: () => line.remove()
+                        });
+                    }, 2000);
+                }
+            });
+        };
+
+        const generateLines = () => {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(createLine, i * 100);
+            }
+        };
+
+        generateLines();
+        setInterval(generateLines, 3000);
+
+        gsap.from('.error-border', {
+            scale: 0.8,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+        });
+    </script>
+</body>
+</html>
